@@ -1,5 +1,6 @@
-const routes = require("next-routes")();
+const routes = require('next-routes')();
 
-routes.add("/", "Home");
+routes.add('/', 'index');
+routes.add('/login', 'login');
 
 module.exports = routes;

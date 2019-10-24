@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-const { createServer } = require("http");
-const next = require("next");
-const routes = require("./routes");
+const { createServer } = require('http');
+const next = require('next');
+const routes = require('./routes');
 
-const app = next({ dev: process.env.NODE_ENV !== "production", dir: "./" });
+const app = next({ dev: process.env.NODE_ENV !== 'production', dir: './src' });
 const handler = routes.getRequestHandler(app);
 
 app.prepare().then(() => {
