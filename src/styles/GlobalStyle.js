@@ -30,7 +30,6 @@ export default createGlobalStyle`
     margin: 60px auto auto auto;
     padding: 0 1em;
     flex: 1;
-    background: #F6F8F9;
 
     @media only screen and (max-width: 515px) {
       margin: 90px auto auto auto;

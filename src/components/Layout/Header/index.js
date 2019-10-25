@@ -22,6 +22,7 @@ export default function Header() {
       pathname: '/',
       query: {
         search,
+        page: 1,
       },
     });
 
