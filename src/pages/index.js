@@ -6,8 +6,6 @@ import api from '~/services/api';
 import PostCard from '~/components/PostCard';
 import Pagination from '~/components/Pagination';
 
-import { Container } from './styles';
-
 export default function Home({ search, tags, page }) {
   const Router = useRouter();
   const [posts, setPosts] = useState([]);
@@ -46,7 +44,7 @@ export default function Home({ search, tags, page }) {
   }
 
   return (
-    <Container>
+    <>
       {posts.map((post, index) => (
         <PostCard key={post.id} post={post} index={index} />
       ))}
@@ -64,7 +62,7 @@ export default function Home({ search, tags, page }) {
           previousLabel="&#10094;"
         />
       ) : null}
-    </Container>
+    </>
   );
 }
 

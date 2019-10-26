@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ReactPaginate from 'react-paginate';
 
 export const Container = styled.div`
   .pagination-container {
@@ -10,6 +9,7 @@ export const Container = styled.div`
 
     li {
       margin: 0 10px;
+      cursor: pointer;
     }
 
     .selected {
