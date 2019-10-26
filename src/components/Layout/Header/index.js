@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -10,6 +11,7 @@ import Logo from '~/public/mcontigo.svg';
 import { Container } from './styles';
 
 export default function Header() {
+  const loading = useSelector(state => state.posts.loading);
   const [search, setSearch] = useState('');
   const Router = useRouter();
 
@@ -39,7 +41,7 @@ export default function Header() {
         </Link>
 
         <form onSubmit={handleSubmit} className="search">
-          <button type="submit" className="search-icon">
+          <button type="submit" className="search-icon" disabled={loading}>
             <SearchIcon />
           </button>
           <InputBase

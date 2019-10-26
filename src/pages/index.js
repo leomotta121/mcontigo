@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
+import { setPosts, setLoadingFalse, setLoadingTrue } from '~/store/ducks/posts';
 import api from '~/services/api';
 
+import Spinner from '~/components/Spinner';
 import PostCard from '~/components/PostCard';
 import Pagination from '~/components/Pagination';
 
 export default function Home({ search, tags, page }) {
+  const dispatch = useDispatch();
   const Router = useRouter();
-  const [posts, setPosts] = useState([]);
+  const posts = useSelector(state => state.posts.posts);
+  const loading = useSelector(state => state.posts.loading);
   const [maxPage, setMaxPage] = useState(0);
 
   useEffect(() => {
     async function loadPosts() {
+      dispatch(setLoadingTrue());
+
       const { data, headers } = await api.get('/posts', {
         params: {
           orderby: 'relevance',
@@ -22,8 +29,9 @@ export default function Home({ search, tags, page }) {
         },
       });
 
-      setPosts(data);
+      dispatch(setPosts(data));
       setMaxPage(parseInt(headers['x-mc-total-pages'], 10));
+      dispatch(setLoadingFalse());
     }
 
     loadPosts();
@@ -45,11 +53,15 @@ export default function Home({ search, tags, page }) {
 
   return (
     <>
-      {posts.map((post, index) => (
-        <PostCard key={post.id} post={post} index={index} />
-      ))}
+      {loading ? (
+        <Spinner size={32} color="secondary" />
+      ) : (
+        posts.map((post, index) => (
+          <PostCard key={post.id} post={post} index={index} />
+        ))
+      )}
 
-      {page && posts.length > 0 ? (
+      {page && posts.length > 0 && !loading ? (
         <Pagination
           pageCount={maxPage}
           pageRangeDisplayed={3}
