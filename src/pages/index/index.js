@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import api from '~/services/api';
+
+import PostCard from '~/components/PostCard';
 
 import { Container } from './styles';
 
 export default function Home({ search, tags, page }) {
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     async function loadPosts() {
       const { data, headers } = await api.get('/posts', {
@@ -16,7 +19,7 @@ export default function Home({ search, tags, page }) {
         },
       });
 
-      console.log(data, headers, page);
+      setPosts(data);
     }
 
     loadPosts();
@@ -24,11 +27,9 @@ export default function Home({ search, tags, page }) {
 
   return (
     <Container>
-      <h1>Page</h1>
-
-      <Link href="/login">
-        <a>back</a>
-      </Link>
+      {posts.map((post, index) => (
+        <PostCard key={post.id} post={post} index={index} />
+      ))}
     </Container>
   );
 }
@@ -37,5 +38,6 @@ Home.getInitialProps = context => {
   return {
     search: context.query.search,
     tags: context.query.tags,
+    page: context.query.page,
   };
 };
