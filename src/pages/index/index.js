@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import { useRouter } from 'next/router';
 
 import api from '~/services/api';
 
 import PostCard from '~/components/PostCard';
+import Pagination from '~/components/Pagination';
 
 import { Container } from './styles';
 
@@ -51,8 +51,8 @@ export default function Home({ search, tags, page }) {
         <PostCard key={post.id} post={post} index={index} />
       ))}
 
-      {page && page > 1 && posts.length > 0 ? (
-        <ReactPaginate
+      {page && posts.length > 0 ? (
+        <Pagination
           pageCount={maxPage}
           pageRangeDisplayed={3}
           marginPagesDisplayed={3}
