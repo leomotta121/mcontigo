@@ -5,6 +5,9 @@ import es from 'date-fns/locale/es';
 
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import Tags from '~/components/Tags';
+import AuthorCard from '~/components/AuthorCard';
 
 import { Container, ContentContainer } from './styles';
 
@@ -13,7 +16,7 @@ export default function PostContent({ post }) {
   const formattedDate = format(date, "dd MMMM' ,' yyyy", {
     locale: es,
   });
-
+  const a = [];
   const media = post.featured_media.large
     ? post.featured_media.large
     : post.featured_media['big-size'];
@@ -65,6 +68,12 @@ export default function PostContent({ post }) {
       </Typography>
 
       <ContentContainer dangerouslySetInnerHTML={{ __html: post.content }} />
+
+      <Tags tags={post.tags} />
+
+      <Divider style={{ margin: '20px 0' }} />
+
+      <AuthorCard author={post.author} />
     </Container>
   );
 }

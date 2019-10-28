@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 20pxx;
+  margin-top: 20px;
 
   img {
     display: block;
@@ -29,6 +29,7 @@ export const Container = styled.div`
 
 export const ContentContainer = styled.div`
   font-size: 18px;
+  margin: 20px 0;
 
   p {
     margin-top: 20px;

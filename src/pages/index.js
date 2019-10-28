@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { setPosts, setLoadingFalse, setLoadingTrue } from '~/store/ducks/posts';
 import api from '~/services/api';
 
+import SEO from '~/components/SEO';
 import Spinner from '~/components/Spinner';
 import PostCard from '~/components/PostCard';
 import Pagination from '~/components/Pagination';
@@ -36,7 +37,7 @@ export default function Home({ search, tags, page, categories }) {
     }
 
     loadPosts();
-  }, [search, tags, page]);
+  }, [search, tags, page, categories]);
 
   async function handlePageChange(index) {
     const query = {
@@ -54,6 +55,8 @@ export default function Home({ search, tags, page, categories }) {
 
   return (
     <>
+      <SEO metas={{ title: 'mcontigo' }} />
+
       {loading ? (
         <Spinner size={32} color="secondary" />
       ) : (
