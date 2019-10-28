@@ -8,5 +8,5 @@ RUN yarn
 COPY . ./
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 9045
 CMD ["npm", "dev"]

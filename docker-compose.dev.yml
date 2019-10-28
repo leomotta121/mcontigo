@@ -4,10 +4,10 @@ services:
     build:
       context: ./
     environment:
-      - PORT=3000
+      - PORT=9045
       - NODE_ENV=development
     ports:
-      - '3000:3000'
+      - '9045:9045'
     volumes:
       - ./:/usr/src/app
     command: yarn dev

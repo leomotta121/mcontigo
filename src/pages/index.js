@@ -55,8 +55,6 @@ export default function Home({ search, tags, page, categories }) {
 
   return (
     <>
-      <SEO metas={{ title: 'mcontigo' }} />
-
       {loading ? (
         <Spinner size={32} color="secondary" />
       ) : (
