@@ -32,16 +32,16 @@ export const Container = styled.div`
         height: 28px;
         margin-left: 3px;
         color: #fff;
-
-        &:focus {
-          width: 260px;
-        }
       }
 
       .search-icon {
         svg {
           fill: #fff;
         }
+      }
+
+      &:hover {
+        width: 260px;
       }
     }
   }
