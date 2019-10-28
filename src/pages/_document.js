@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="pt-BR">
+      <Html lang="en">
         <Head>
           <meta charSet="UTF-8" />
           <meta

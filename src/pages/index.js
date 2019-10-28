@@ -9,7 +9,7 @@ import Spinner from '~/components/Spinner';
 import PostCard from '~/components/PostCard';
 import Pagination from '~/components/Pagination';
 
-export default function Home({ search, tags, page }) {
+export default function Home({ search, tags, page, categories }) {
   const dispatch = useDispatch();
   const Router = useRouter();
   const posts = useSelector(state => state.posts.posts);
@@ -26,6 +26,7 @@ export default function Home({ search, tags, page }) {
           search,
           tags,
           page,
+          categories,
         },
       });
 
@@ -82,6 +83,7 @@ Home.getInitialProps = context => {
   return {
     search: context.query.search,
     tags: context.query.tags,
+    categories: context.query.categories,
     page: context.query.page,
   };
 };

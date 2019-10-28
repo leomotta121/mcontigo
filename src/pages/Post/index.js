@@ -1,17 +1,37 @@
 import React from 'react';
+import Router from 'next/router';
 
-// import { Container } from './styles';
+import api from '~/services/api';
 
-export default function Post({ slug }) {
+import PostContent from '~/components/PostContent';
+import SEO from '~/components/SEO';
+
+export default function Post({ post }) {
   return (
-    <div>
-      <h1>{slug}</h1>
-    </div>
+    <>
+      <SEO metas={post.metas} />
+      <PostContent post={post} />
+    </>
   );
 }
 
-Post.getInitialProps = context => {
-  return {
-    slug: context.query.slug,
-  };
+Post.getInitialProps = async ({ query, res }) => {
+  try {
+    const { data } = await api.get(`/posts/${query.slug}`);
+
+    return {
+      post: data,
+    };
+  } catch (error) {
+    if (res) {
+      res.writeHead(302, {
+        Location: '/',
+      });
+      res.end();
+    } else {
+      Router.push('/');
+    }
+
+    return {};
+  }
 };
