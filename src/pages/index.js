@@ -46,6 +46,7 @@ export default function Home({ search, tags, page, categories }) {
 
     if (search) query.search = search;
     if (tags) query.tags = tags;
+    if (categories) query.categories = categories;
 
     await Router.replace({
       pathname: '/',
@@ -55,6 +56,12 @@ export default function Home({ search, tags, page, categories }) {
 
   return (
     <>
+      <SEO
+        metas={{
+          title: 'mcontigo',
+        }}
+      />
+
       {loading ? (
         <Spinner size={32} color="secondary" />
       ) : (
