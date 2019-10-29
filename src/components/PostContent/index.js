@@ -71,6 +71,18 @@ export default function PostContent({ post }) {
 
       <Tags tags={post.tags} />
 
+      {post.bibliography ? (
+        <>
+          <Typography variant="h6" color="textSecondary" component="h2">
+            Bibliografía
+          </Typography>
+
+          <ContentContainer
+            dangerouslySetInnerHTML={{ __html: post.bibliography }}
+          />
+        </>
+      ) : null}
+
       <Divider style={{ margin: '20px 0' }} />
 
       <AuthorCard author={post.author} />

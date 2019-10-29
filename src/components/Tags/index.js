@@ -20,7 +20,7 @@ export default function Tags({ tags }) {
                   color="primary"
                   size="small"
                   label={tag.name}
-                  style={{ cursor: 'pointer', marginRight: '10px' }}
+                  style={{ cursor: 'pointer', margin: '0 10px 20px 0' }}
                 />
               </a>
             </Link>
